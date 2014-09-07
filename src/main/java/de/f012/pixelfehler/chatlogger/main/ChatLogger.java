@@ -14,6 +14,7 @@ import java.io.File;
 
 import net.md_5.bungee.api.plugin.Plugin;
 import de.f012.pixelfehler.chatlogger.listener.ChatListener;
+import de.f012.pixelfehler.chatlogger.util.FileLogger;
 
 public class ChatLogger extends Plugin {
 	
@@ -34,6 +35,7 @@ public class ChatLogger extends Plugin {
 		
 		this.registerCommands();
 		this.registerEvents();
+		FileLogger.init();
 	}
 	
 	private void registerEvents(){
