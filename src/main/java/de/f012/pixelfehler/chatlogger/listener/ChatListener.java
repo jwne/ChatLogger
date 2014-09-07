@@ -26,7 +26,7 @@ public class ChatListener implements Listener {
 	private ChatLogger instance;
 	
 	public ChatListener(ChatLogger instance){
-		
+		this.instance = instance;
 	}
 	
 	@EventHandler
