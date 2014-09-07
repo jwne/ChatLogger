@@ -1,3 +1,13 @@
+/*
+ * PlayerDisconnectListener.java
+ * 
+ * version 1.0
+ * 
+ * Copyright (c) 2014-2015 Floppy012
+ * 
+ * Listens to player disconnects
+ */
+
 package de.f012.pixelfehler.chatlogger.listener;
 
 import java.text.SimpleDateFormat;
