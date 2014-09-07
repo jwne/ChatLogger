@@ -77,8 +77,9 @@ public class FileLogger {
 		try {
 			FileOutputStream fos = new FileOutputStream(playerLogFile, true);
 			OutputStreamWriter osw = new OutputStreamWriter(fos, "UTF-8");
-			Writer writer = new BufferedWriter(osw);
+			BufferedWriter writer = new BufferedWriter(osw);
 			
+			writer.newLine();
 			writer.append(logMsg);
 			writer.flush();
 			writer.close();
