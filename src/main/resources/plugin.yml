@@ -1,0 +1,4 @@
+name: ChatLogger
+main: de.f012.pixelfehler.chatlogger.main.ChatLogger
+version: 1.0
+author: Floppy012
