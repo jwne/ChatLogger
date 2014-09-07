@@ -41,7 +41,7 @@ public class ChatListener implements Listener {
 			public void run(){
 				ProxiedPlayer pplayer = PlayerUtils.getPlayerFromConnection(players, con);
 				if(pplayer != null){
-					FileLogger.log(pplayer, message);
+					FileLogger.log(pplayer, message, false);
 				}else{
 					ChatLogger.getInstance().getLogger().severe("Could not get Player from connection!");
 				}

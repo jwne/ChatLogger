@@ -14,6 +14,8 @@ import java.io.File;
 
 import net.md_5.bungee.api.plugin.Plugin;
 import de.f012.pixelfehler.chatlogger.listener.ChatListener;
+import de.f012.pixelfehler.chatlogger.listener.PlayerDisconnectListener;
+import de.f012.pixelfehler.chatlogger.listener.PostLoginListener;
 import de.f012.pixelfehler.chatlogger.util.FileLogger;
 
 public class ChatLogger extends Plugin {
@@ -40,6 +42,8 @@ public class ChatLogger extends Plugin {
 	
 	private void registerEvents(){
 		this.getProxy().getPluginManager().registerListener(this, new ChatListener(this));
+		this.getProxy().getPluginManager().registerListener(this, new PostLoginListener(this));
+		this.getProxy().getPluginManager().registerListener(this, new PlayerDisconnectListener(this));
 	}
 	
 	private void registerCommands(){

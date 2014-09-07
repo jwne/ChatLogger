@@ -15,7 +15,6 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
-import java.io.Writer;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -45,8 +44,9 @@ public class FileLogger {
 	 * Logs a String to players Logfile
 	 * @param player the player thats logfile gets affected
 	 * @param message the message to write
+	 * @param if the message sould be directly written to the file or if it shoult be formatted.
 	 */
-	public static void log(ProxiedPlayer player, String message){
+	public static void log(ProxiedPlayer player, String message, boolean directMessage){
 		Date d = new Date(System.currentTimeMillis());
 		SimpleDateFormat time = new SimpleDateFormat();
 		time.applyPattern("H:m:s");
@@ -54,8 +54,12 @@ public class FileLogger {
 		SimpleDateFormat sdfPlayerFile = new SimpleDateFormat();
 		sdfPlayerFile.applyPattern("d-M-yyyy");
 		
-		String logMsg = "[" + player.getServer().getInfo().getName() + "][" + time.format(d) + "]" + player.getName() + ": " + message;
+		String logMsg = message;
 		
+		if(!directMessage){
+			logMsg = "[" + player.getServer().getInfo().getName() + "][" + time.format(d) + "]" + player.getName() + ": " + message;
+		}
+			
 		File playerLogFile = new File(logFolder.getAbsolutePath() + "/" + player.getName() + "/" + sdfPlayerFile.format(d) + ".log");
 		
 		if(!hasDir(player.getName())){
