@@ -1,7 +1,7 @@
 /*
  * ChatListener.java
  * 
- * version 1.0
+ * version 1.1
  * 
  * Copyright (c) 2014-2015 Floppy012
  * 
@@ -10,6 +10,7 @@
 
 package de.f012.pixelfehler.chatlogger.listener;
 
+import java.util.ArrayList;
 import java.util.Collection;
 
 import net.md_5.bungee.api.connection.Connection;
@@ -31,14 +32,13 @@ public class ChatListener implements Listener {
 	
 	@EventHandler
 	public void onChat(ChatEvent event){
-		final Collection<ProxiedPlayer> players = this.instance.getProxy().getPlayers();
+		final Collection<ProxiedPlayer> players = new ArrayList<ProxiedPlayer>(this.instance.getProxy().getPlayers());
 		final Connection con = event.getSender();
 		final String message = event.getMessage();
 		
-		new Thread(new Runnable(){
-
+		this.instance.getProxy().getScheduler().runAsync(this.instance, new Runnable(){
 			@Override
-			public void run() {
+			public void run(){
 				ProxiedPlayer pplayer = PlayerUtils.getPlayerFromConnection(players, con);
 				if(pplayer != null){
 					FileLogger.log(pplayer, message);
@@ -46,7 +46,7 @@ public class ChatListener implements Listener {
 					ChatLogger.getInstance().getLogger().severe("Could not get Player from connection!");
 				}
 			}
-			
-		}).run();
+		});
+		
 	}
 }
