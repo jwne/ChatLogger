@@ -60,10 +60,10 @@ public class FileLogger {
 			logMsg = "[" + player.getServer().getInfo().getName() + "][" + time.format(d) + "]" + player.getName() + ": " + message;
 		}
 			
-		File playerLogFile = new File(logFolder.getAbsolutePath() + "/" + player.getName() + "/" + sdfPlayerFile.format(d) + ".log");
+		File playerLogFile = new File(logFolder.getAbsolutePath() + "/" + player.getUniqueId().toString() + "/" + sdfPlayerFile.format(d) + ".log");
 		
-		if(!hasDir(player.getName())){
-			File playerLogDir = new File(logFolder.getAbsolutePath() + "/" + player.getName());
+		if(!hasDir(player.getUniqueId().toString())){
+			File playerLogDir = new File(logFolder.getAbsolutePath() + "/" + player.getUniqueId().toString());
 			if(!(playerLogDir.exists() && playerLogDir.isDirectory())){
 				playerLogDir.mkdirs();
 			}
@@ -97,13 +97,13 @@ public class FileLogger {
 	 * @param player the player of which the logdir/file should be looked
 	 * @return true if the player has a Dir&file, false if one or both are missing
 	 */
-	private static boolean hasDir(String player){
+	private static boolean hasDir(String playerUUID){
 		if(logFolder == null){
 			ChatLogger.getInstance().getLogger().severe("FileLogger has not been initialized!");
 			return false;
 		}
 		
-		File playerLogDir = new File(logFolder.getAbsolutePath() + "/" + player);
+		File playerLogDir = new File(logFolder.getAbsolutePath() + "/" + playerUUID);
 		
 		if(playerLogDir.exists() && playerLogDir.isDirectory()){
 			Date date = new Date(System.currentTimeMillis());
